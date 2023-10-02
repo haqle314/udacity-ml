@@ -6,8 +6,8 @@ WORKDIR /ml-app
 
 ## Step 2:
 # Copy source code to working directory
-COPY --link app.py requirements.txt ./
-COPY --link model_data ./model_data
+COPY app.py requirements.txt ./
+COPY model_data ./model_data/
 
 ## Step 3:
 # Install packages from requirements.txt
