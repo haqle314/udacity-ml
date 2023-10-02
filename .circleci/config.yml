@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.7-stretch
+      - image: cimg/python:3.6.7-stretch
     working_directory: ~/repo
     steps:
       - checkout
@@ -17,9 +17,10 @@ jobs:
           command: |
             python3 -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            pip install --upgrade pip && pip install -r requirements.txt
             wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
-            chmod +x /bin/hadolint
+            chmod 755 /bin/hadolint
+            ls -l /bin/hadolint
       - save_cache:
           paths:
             - ./venv
