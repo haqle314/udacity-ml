@@ -25,12 +25,12 @@ You can find a detailed [project rubric, here](https://review.udacity.com/#!/rub
 
 ## Setup the Environment
 
-* Create a virtualenv with Python 3.7 and activate it. Ref****er to this link for help on specifying the Python version in the virtualenv. 
+* Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
 ```bash
 python3 -m pip install --user virtualenv
 # You should have Python 3.7 available in your host. 
 # Check the Python path using `which python3`
-# Use a command similar to this one:
+# Use a command similar to this one: python3 -m virtualenv --python=/usr/bin/python3.7 .devops
 python3 -m virtualenv --python=<path-to-Python3.7> .devops
 source .devops/bin/activate
 ```
@@ -44,7 +44,21 @@ source .devops/bin/activate
 
 ### Kubernetes Steps
 
-* Setup and Configure Docker locally
 * Setup and Configure Kubernetes locally
-* Create Flask app in Container
+```bash
+minikube start
+```
 * Run via kubectl
+```bash
+minikube kubectl -- run udacity-ml --image="haqle/udacity-ml" --port=80
+minikube kubectl -- port-forward pod/udacity-ml 8000:80
+# run_kubernetes.sh is a helper script containing the above commands
+```
+* Make predictions
+```bash
+./make_predictions.sh
+```
+* Clean up environment
+```bash
+minikube stop
+```
